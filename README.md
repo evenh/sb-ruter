@@ -18,5 +18,10 @@ Gives you the departure times for public transport in Oslo and surrounding areas
 	1. If set: `http://yourserver.com/sb-ruter/ruter.php?direction=(1|2)`
 	2. If not set: `http://yourserver.com/sb-ruter/ruter.php?stop=XXXXXX&direction=(1|2)`
 
+## Screenshots
+
+<a href="http://i.imgur.com/ZkYnZ2x.png"><img alt="Horizontal" src="http://i.imgur.com/ZkYnZ2xm.png"></a>
+<a href="http://i.imgur.com/dhG69du.png"><img alt="Vertical" src="http://i.imgur.com/dhG69dum.png"></a>
+
 ## Notes
 If you find any bugs, please open an issue.
