@@ -5,8 +5,9 @@
 // Output UTF-8
 header('Content-Type: text/html; charset=utf-8');
 
-// Require our config
+// Require our config and functions
 require('config.php');
+require('functions.php');
 
 // Get the direction
 $direction = @$_GET['direction'];
@@ -21,31 +22,34 @@ if(!empty($_GET['stop']) && is_numeric($_GET['stop'])){
 	$stop = STOP;
 }
 
-// Check for valid path
-if(RUTER_PATH == ''){
-	die("Please specify a valid RUTER_PATH like 'http://localhost/sb-ruter'.");
+// Generate a path, unless overriden in config
+if(!defined('RUTER_PATH')){
+	define("RUTER_PATH", getPath());
+} else {
+	if(RUTER_PATH == ''){
+		die("Please specify a valid RUTER_PATH like 'http://localhost/sb-ruter'.");
+	}
 }
 
 // URL for querying json.php
 $url = RUTER_PATH."/json.php?direction=$direction&stop=$stop";
 
-// Gets the name for a stop
-function getNameForStop($stop){
-	$json = json_decode(file_get_contents(API_SERVER."/ReisRest/Place/FindMatches/$stop"));
-	return $json[0]->Name;
-}
+// Fetch data
+$data = fetchJSON($url);
 
-// Fetch data and decode JSON
-$data = json_decode(file_get_contents("$url"));
+// Did we manage to fetch data from json.php?
+if(!$data){
+	die("Please check RUTHER_PATH in config.php. Either the built-in path detector doesn't work or your specified path is wrong.");
+}
 ?>
 <table id="ruterRT">
 	<tr>
 		<th style="width:50px;text-align:center"><img src="logo.png" height="30px" /></th>
-        <th style="padding-left:2%;text-align:left;"><?php echo getNameForStop($stop); ?> (<?php if($direction == 1){ echo TO_TOWN; } elseif($direction == 2){ echo FROM_TOWN; } ?>)</th>
+        <th style="padding-left:2%;text-align:left;"><?php echo getNameForStop($stop);?> <?php if(!$is_down){if($direction==1){echo '('.TO_TOWN.')';} elseif($direction==2){echo '('.FROM_TOWN.')';}}?></th>
         <th style="width:95px;text-align:center"><?php echo DEPARTURE; ?></th>
 	</tr>
 	<?php
-	// Loop through travel data
+	// Loop through travel data and output
 	foreach($data as $departure){
 		echo "
 		<tr>
