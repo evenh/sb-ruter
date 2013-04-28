@@ -19,4 +19,7 @@ $apiDown[3] = "service is restored";
 
 // Turn off error reporting
 error_reporting(0);
+
+// Sets timeout for fetching JSON (and all other data) to 20 seconds
+ini_set("default_socket_timeout", 20);
 ?>
