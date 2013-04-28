@@ -44,9 +44,9 @@ if(!$data){
 ?>
 <table id="ruterRT">
 	<tr>
-		<th style="width:50px;text-align:center"><img src="logo.png" height="30px" /></th>
+		<th style="width:55px;text-align:center"><img src="logo.png" height="30px" /></th>
         <th style="padding-left:2%;text-align:left;"><?php echo getNameForStop($stop);?> <?php if(!$is_down){if($direction==1){echo '('.TO_TOWN.')';} elseif($direction==2){echo '('.FROM_TOWN.')';}}?></th>
-        <th style="width:95px;text-align:center"><?php echo DEPARTURE; ?></th>
+        <th style="width:105px;text-align:center"><?php echo DEPARTURE; ?></th>
 	</tr>
 	<?php
 	// Loop through travel data and output
