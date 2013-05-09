@@ -38,6 +38,9 @@ if($json){
 
     // Loop through data
     foreach($json as $pt){ // pt = public transport
+
+        if (count($lines) > 0 && !in_array($pt->LineRef, $lines)) continue;
+
         $ptTime = cleandate($pt->AimedArrivalTime);
         $now    = time();
         $time   = showtime($ptTime-$now);

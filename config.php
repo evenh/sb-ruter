@@ -4,6 +4,9 @@ define("API_SERVER"	, "http://api.trafikanten.no");
 define("STOP"		, "3010057");
 /* define("RUTER_PATH"	, "http://localhost/sb-ruter"); // Path to your installation (if you want to override automatic detection) - No trailing slash */
 
+// If you want to specify which line(s) to show, uncomment this and set in line number(s)
+// $lines = array("11", "17");
+
 // Localization
 define("NOW"		, "Nå");
 define("DEPARTURE"	, "Avgang");
