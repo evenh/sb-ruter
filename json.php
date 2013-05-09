@@ -25,6 +25,11 @@ if(!is_numeric($direction) || empty($direction)){
     die("Please specify a valid direction in the URL. Valid values: 1 or 2.");
 }
 
+// Should we filter by lines?
+if(!isset($lines) && isset($_GET['lines']) && !empty($_GET['lines'])){
+    $lines = explode(',',$_GET['lines']);
+}
+
 // Output the data as JSON
 header('Content-type: application/json');
 
@@ -39,7 +44,7 @@ if($json){
     // Loop through data
     foreach($json as $pt){ // pt = public transport
 
-        if (count($lines) > 0 && !in_array($pt->LineRef, $lines)) continue;
+        if (count(@$lines) > 0 && !in_array($pt->LineRef, @$lines)) continue;
 
         $ptTime = cleandate($pt->AimedArrivalTime);
         $now    = time();

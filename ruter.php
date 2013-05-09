@@ -34,12 +34,17 @@ if(!defined('RUTER_PATH')){
 // URL for querying json.php
 $url = RUTER_PATH."/json.php?direction=$direction&stop=$stop";
 
+// Check if we should filter out lines
+if(!isset($lines) && isset($_GET['lines']) && !empty($_GET['lines'])){
+	$url .= "&lines=".$_GET['lines'];
+}
+
 // Fetch data
 $data = fetchJSON($url);
 
 // Did we manage to fetch data from json.php?
 if(!$data){
-	die("Please check RUTHER_PATH in config.php. Either the built-in path detector doesn't work or your specified path is wrong.");
+	die("Please check RUTHER_PATH in config.php. Either the built-in path detector doesn't work or your specified path is wrong. It could also be invalid input :(");
 }
 ?>
 <table id="ruterRT">
