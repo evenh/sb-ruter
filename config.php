@@ -2,6 +2,7 @@
 // Config
 define("API_SERVER"	, "http://api.trafikanten.no");
 define("STOP"		, "3010057");
+/* define("IGNORE_MIN" , 5); // Ignore departures that leaves in less than 5 minutes */
 /* define("RUTER_PATH"	, "http://localhost/sb-ruter"); // Path to your installation (if you want to override automatic detection) - No trailing slash */
 
 // If you want to specify which line(s) to show, uncomment this and set in line number(s). This will override lines specified in the URL.
