@@ -19,6 +19,7 @@ Gives you the departure times for public transport in Oslo and surrounding areas
 	1. If set: `http://yourserver.com/sb-ruter/ruter.php?direction=(1|2)`
 	2. If not set: `http://yourserver.com/sb-ruter/ruter.php?stop=XXXXXX&direction=(1|2)`
 2. You can optionally filter out the lines you want to see by adding `&filter=11,17` to the URL. This will only show lines 11 and 17.
+3. If you want to ignore departures leaving in less than X minutes, uncomment line 5 in `config.php` and modify to suit your needs.
 
 ## Screenshots
 
