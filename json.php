@@ -6,7 +6,7 @@
 require('config.php');
 require('functions.php');
 
-// This widget is only useful if location == Oslo
+// This is only useful if location == Oslo
 date_default_timezone_set('Europe/Oslo');
 
 // No caching
