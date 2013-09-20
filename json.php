@@ -43,16 +43,24 @@ if($json){
 
     // Loop through data
     foreach($json as $pt){ // pt = public transport
+        $continue = true;
 
         if (count(@$lines) > 0 && !in_array($pt->LineRef, @$lines)) continue;
 
-        $ptTime = cleandate($pt->AimedArrivalTime);
-        $now    = time();
-        $time   = showtime($ptTime-$now);
-
-        if(!$time){
-            $time = date("H:i", $ptTime);
+        if(defined('IGNORE_MIN')){
+            if(cleandate($pt->AimedArrivalTime) < strtotime("+".IGNORE_MIN." min")){
+                $continue = false;
+            }
         }
+
+        if($continue){
+            $ptTime = cleandate($pt->AimedArrivalTime);
+            $now    = time();
+            $time   = showtime($ptTime-$now);
+
+            if(!$time){
+                $time = date("H:i", $ptTime);
+            }
 
         // In what direction?
         if($pt->DirectionRef == 1){ // Towards the city
@@ -72,6 +80,7 @@ if($json){
         }
     }
 
+}
     // Sort the data
     if(!empty($to   )){ usort($to   , "cmp"); }
     if(!empty($from )){ usort($from , "cmp"); }
